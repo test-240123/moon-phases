@@ -26,10 +26,10 @@
 const now = new Date();
 
 // Calculate the moon phase
-if(months == "0") { 
+if(now.getMonth() == "0") { 
   months2 = "1"
 } else if(months > 1) {
-  months2 = months
+  months2 = now.getMonth()
 }
 const synMonth = months
 const lunarCycle = synMonth * 24 * 60 * 60 * 1000;
