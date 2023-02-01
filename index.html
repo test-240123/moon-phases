@@ -1,0 +1,63 @@
+<head>
+  <style>
+    body {
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
+      background-image: url("shttps://github.com/test-240123/moon-phases/raw/main/4L5OhqD.png");
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    #moonImage img {
+      width: 200px;
+      height: 200px;
+      display: block;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <p id="moonPhase"></p>
+<p id="moonIllumination"></p>
+<div id="moonImage"></div>
+
+<script>
+const now = new Date();
+
+// Calculate the moon phase
+const synMonth = now.getMonth();
+const lunarCycle = synMonth * 24 * 60 * 60 * 1000;
+const daysSinceNewMoon = (now - new Date(now.getFullYear(), 0, 1)) % lunarCycle;
+const phase = ((daysSinceNewMoon / lunarCycle + 0.5) % 1) * 8;
+const moonPhase = ['New', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous', 'Full', 'Waning Gibbous', 'Third Quarter', 'Waning Crescent'][Math.floor(phase)];
+
+document.getElementById("moonPhase").innerHTML = "Moon phase: " + moonPhase;
+
+// Display moon phase image
+const moonImage = document.getElementById("moonImage");
+if (moonPhase === "New") {
+  moonImage.innerHTML = '<img src="new_moon.png" alt="New Moon">';
+} else if (moonPhase === "Waxing Crescent") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waxing-crescent-moon.png" alt="Waxing Crescent Moon">';
+} else if (moonPhase === "First Quarter") {
+  moonImage.innerHTML = '<img src=""https://github.com/test-240123/moon-phases/raw/main/first-quarter-moon.png" alt="First Quarter Moon">';
+} else if (moonPhase === "Waxing Gibbous") {
+  moonImage.innerHTML = '<img src=""https://github.com/test-240123/moon-phases/raw/main/waxing-gibbous-moon.png" alt="Waxing Gibbous Moon">';
+} else if (moonPhase === "Full") {
+  moonImage.innerHTML = '<img src=""https://github.com/test-240123/moon-phases/raw/main/full-moon.png" alt="Full Moon">';
+} else if (moonPhase === "Waning Gibbous") {
+  moonImage.innerHTML = '<img src=""https://github.com/test-240123/moon-phases/raw/main/waning-gibbous-moon.png" alt="Waning Gibbous Moon">';
+} else if (moonPhase === "Third Quarter") {
+  moonImage.innerHTML = '<img src=""https://github.com/test-240123/moon-phases/raw/main/last-quarter-moon.png" alt="Third Quarter Moon">';
+} else if (moonPhase === "Waning Crescent") {
+  moonImage.innerHTML = '<img src=""https://github.com/test-240123/moon-phases/raw/main/waning-crescent-moon.png" alt="Waning Crescent Moon">';
+}
+
+// Calculate the moon illumination
+const solarCycle = 365.25 * 24 * 60 * 60 * 1000;
+const daysSinceNewYear = (now - new Date(now.getFullYear(), 0, 1)) / solarCycle;
+const illumination = (1 - Math.cos(2 * Math.PI * (daysSinceNewYear - phase / 8))) / 2;
+document.getElementById("moonIllumination").innerHTML = "Moon illumination: " + (illumination * 100).toFixed(2) + "%";
+</script>
+</body>
