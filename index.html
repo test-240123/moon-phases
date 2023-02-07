@@ -31,6 +31,7 @@
   <p id="moonPhase"></p>
 <p id="moonIllumination"></p>
 <div id="moonImage"></div>
+<p>(calculations may be incorrect, they are done automatically)</p>
 
 <script>
     // CODE FROM THE NODE PACKAGE "SunCalc", ALL CREDITS TO THEM
@@ -214,7 +215,7 @@ function getMoonPhase() {
   const illumination = getMoonIllumination(now);
   const t = illumination.phase * 8;
   const phase = (illumination.phase * 8) | 0;
-  const MoonPhases = [    'New Moon',    'Waxing Crescent',    'First Quarter',    'Waxing Gibbous',    'Full Moon',    'Waning Gibbous',    'Third Quarter',    'Waning Crescent'  ];
+  const MoonPhases = [    'New Moon',    'Waxing Crescent',    'First Quarter',    'Waxing Gibbous',    'Full Moon',    'Waning Gibbous',    'Third Quarter',    'Waning Crescent'  ]; 
   console.log(t)
   return MoonPhases[phase];
 }
@@ -228,7 +229,26 @@ function getMoonPercent() {
     return 100 - (illumination.phase * 200 - 100)
   }
   const phase = (illumination.phase * 200) | 0;
+  console.log(illumination.phase)
+  console.log(phase)
   return phase;
+}
+
+function moonphase() {
+    const now = new Date();
+  const times = getMoonTimes(now, /* latitude */ 45, /* longitude */ -90);
+  const position = getMoonPosition(now, /* latitude */ 45, /* longitude */ -90);
+  const illumination = getMoonIllumination(now);
+    if(illumination.phase * 200 > 102.5) {
+        if(illumination.phase * 200 < 125) {
+            return "Wanning Gibbous"
+        }          
+    } else if(illumination.phase * 200 > 75) {
+        if(illumination.phase * 200 < 98.5) {
+            return "Waxing Gibbous"
+        }
+    } else return getMoonPhase()
+    
 }
 
 const moonImage = document.getElementById("moonImage");
@@ -238,11 +258,11 @@ if (getMoonPhase() === "New Moon") {
   moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waxing-crescent-moon.png" alt="Waxing Crescent Moon">';
 } else if (getMoonPhase() === "First Quarter") {
   moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/first-quarter-moon.png" alt="First Quarter Moon">';
-} else if (getMoonPhase() === "Waxing Gibbous") {
+} else if (moonphase() === "Waxing Gibbous") {
   moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waxing-gibbous-moon.png" alt="Waxing Gibbous Moon">';
-} else if (getMoonPhase() === "Full Moon") {
+} else if (moonphase() === "Full Moon") {
   moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/full-moon.png" alt="Full Moon">';
-} else if (getMoonPhase() === "Waning Gibbous") {
+} else if (moonphase() === "Waning Gibbous") {
   moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waning-gibbous-moon.png" alt="Waning Gibbous Moon">';
 } else if (getMoonPhase() === "Third Quarter") {
   moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/last-quarter-moon.png" alt="Third Quarter Moon">';
@@ -257,7 +277,7 @@ function moonphase() {
   const illumination = getMoonIllumination(now);
     if(illumination.phase * 200 > 102.5) {
         if(illumination.phase * 200 < 125) {
-            return "Wanning Gibbous"
+            return "Waning Gibbous"
         }          
     } else if(illumination.phase * 200 > 75) {
         if(illumination.phase * 200 < 98.5) {
