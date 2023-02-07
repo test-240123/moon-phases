@@ -231,6 +231,25 @@ function getMoonPercent() {
   return phase;
 }
 
+const moonImage = document.getElementById("moonImage");
+if (getMoonPhase() === "New Moon") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/new-moon.png" alt="New Moon">';
+} else if (getMoonPhase() === "Waxing Crescent") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waxing-crescent-moon.png" alt="Waxing Crescent Moon">';
+} else if (getMoonPhase() === "First Quarter") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/first-quarter-moon.png" alt="First Quarter Moon">';
+} else if (getMoonPhase() === "Waxing Gibbous") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waxing-gibbous-moon.png" alt="Waxing Gibbous Moon">';
+} else if (getMoonPhase() === "Full Moon") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/full-moon.png" alt="Full Moon">';
+} else if (getMoonPhase() === "Waning Gibbous") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waning-gibbous-moon.png" alt="Waning Gibbous Moon">';
+} else if (getMoonPhase() === "Third Quarter") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/last-quarter-moon.png" alt="Third Quarter Moon">';
+} else if (getMoonPhase() === "Waning Crescent") {
+  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waning-crescent-moon.png" alt="Waning Crescent Moon">';
+}
+
 function moonphase() {
     const now = new Date();
   const times = getMoonTimes(now, /* latitude */ 45, /* longitude */ -90);
@@ -245,25 +264,7 @@ function moonphase() {
             return "Waxing Gibbous"
         }
     } else return getMoonPhase()
-    }
-
-const moonImage = document.getElementById("moonImage");
-if (getMoonPhase() === "New Moon") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/new-moon.png" alt="New Moon">';
-} else if (getMoonPhase() === "Waxing Crescent") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waxing-crescent-moon.png" alt="Waxing Crescent Moon">';
-} else if (getMoonPhase() === "First Quarter") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/first-quarter-moon.png" alt="First Quarter Moon">';
-} else if (moonphase() === "Waxing Gibbous") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waxing-gibbous-moon.png" alt="Waxing Gibbous Moon">';
-} else if (moonphase() === "Full Moon") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/full-moon.png" alt="Full Moon">';
-} else if (moonphase() === "Waning Gibbous") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waning-gibbous-moon.png" alt="Waning Gibbous Moon">';
-} else if (getMoonPhase() === "Third Quarter") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/last-quarter-moon.png" alt="Third Quarter Moon">';
-} else if (getMoonPhase() === "Waning Crescent") {
-  moonImage.innerHTML = '<img src="https://github.com/test-240123/moon-phases/raw/main/waning-crescent-moon.png" alt="Waning Crescent Moon">';
+    
 }
 
 document.getElementById("moonPhase").innerHTML = "Moon phase: " + moonphase(); 
