@@ -1,4 +1,10 @@
 <head>
+  <meta property="og:type" content="website">
+<meta property="og:url" content="https://www.current-moon-phase.digital/">
+<meta property="og:title" id="meta-title">
+<meta property="og:description" id="meta-description">
+<meta property="og:image" content="https://raw.githubusercontent.com/test-240123/moon-phases/main/R%20%20.jpeg">
+
   <style>
     body {
       background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
@@ -241,7 +247,9 @@ if (getMoonPhase() === "New Moon") {
 }
 
 document.getElementById("moonPhase").innerHTML = "Moon phase: " + getMoonPhase(); 
-document.getElementById("moonIllumination").innerHTML = "Percentage of the moon illuminated: " + getMoonPercent(); 
+document.getElementById("moonIllumination").innerHTML = "Percentage of the moon illuminated: " + getMoonPercent() + "%"; 
+  document.getElementById('meta-title').content = 'The current moon phase is: ' + getMoonPhase();
+  document.getElementById('meta-description').content = 'And the current percentage of the moon that is illuminated is: ' + getMoonPercent() + "%";
 console.log(getMoonPhase());
    
 </script>
